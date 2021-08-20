@@ -4,8 +4,8 @@ import { toMarkdown } from 'mdast-util-to-markdown'
 import { removePosition } from 'unist-util-remove-position'
 import { gfmStrikethrough } from 'micromark-extension-gfm-strikethrough'
 import {
-  gfmStrikethroughFromMarkdown,
-  gfmStrikethroughToMarkdown
+  pandocMarkFromMarkdown,
+  pandocMarkToMarkdown,
 } from './index.js'
 
 test('markdown -> mdast', (t) => {
@@ -13,7 +13,7 @@ test('markdown -> mdast', (t) => {
     removePosition(
       fromMarkdown('a ~~b~~ c.', {
         extensions: [gfmStrikethrough()],
-        mdastExtensions: [gfmStrikethroughFromMarkdown]
+        mdastExtensions: [pandocMarkFromMarkdown]
       }),
       true
     ),
@@ -37,7 +37,7 @@ test('markdown -> mdast', (t) => {
     removePosition(
       fromMarkdown('a ~~b\nc~~ d.', {
         extensions: [gfmStrikethrough()],
-        mdastExtensions: [gfmStrikethroughFromMarkdown]
+        mdastExtensions: [pandocMarkFromMarkdown]
       }),
       true
     ),
@@ -71,7 +71,7 @@ test('mdast -> markdown', (t) => {
           { type: 'text', value: ' c.' }
         ]
       },
-      { extensions: [gfmStrikethroughToMarkdown] }
+      { extensions: [pandocMarkToMarkdown,] }
     ),
     'a ~~b~~ c.\n',
     'should serialize strikethrough'
@@ -87,7 +87,7 @@ test('mdast -> markdown', (t) => {
           { type: 'text', value: ' d.' }
         ]
       },
-      { extensions: [gfmStrikethroughToMarkdown] }
+      { extensions: [pandocMarkToMarkdown,] }
     ),
     'a ~~b\nc~~ d.\n',
     'should serialize strikethrough w/ eols'

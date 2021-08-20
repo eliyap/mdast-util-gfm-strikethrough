@@ -9,14 +9,14 @@
 import { containerPhrasing } from 'mdast-util-to-markdown/lib/util/container-phrasing.js'
 
 /** @type {FromMarkdownExtension} */
-export const gfmStrikethroughFromMarkdown = {
+export const pandocMarkFromMarkdown = {
   canContainEols: ['delete'],
   enter: { strikethrough: enterStrikethrough },
   exit: { strikethrough: exitStrikethrough }
 }
 
 /** @type {ToMarkdownExtension} */
-export const gfmStrikethroughToMarkdown = {
+export const pandocMarkToMarkdown = {
   unsafe: [{ character: '~', inConstruct: 'phrasing' }],
   handlers: { delete: handleDelete }
 }
