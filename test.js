@@ -1,8 +1,8 @@
 import test from 'tape'
-import {fromMarkdown} from 'mdast-util-from-markdown'
-import {toMarkdown} from 'mdast-util-to-markdown'
-import {removePosition} from 'unist-util-remove-position'
-import {gfmStrikethrough} from 'micromark-extension-gfm-strikethrough'
+import { fromMarkdown } from 'mdast-util-from-markdown'
+import { toMarkdown } from 'mdast-util-to-markdown'
+import { removePosition } from 'unist-util-remove-position'
+import { gfmStrikethrough } from 'micromark-extension-gfm-strikethrough'
 import {
   gfmStrikethroughFromMarkdown,
   gfmStrikethroughToMarkdown
@@ -23,9 +23,9 @@ test('markdown -> mdast', (t) => {
         {
           type: 'paragraph',
           children: [
-            {type: 'text', value: 'a '},
-            {type: 'delete', children: [{type: 'text', value: 'b'}]},
-            {type: 'text', value: ' c.'}
+            { type: 'text', value: 'a ' },
+            { type: 'delete', children: [{ type: 'text', value: 'b' }] },
+            { type: 'text', value: ' c.' }
           ]
         }
       ]
@@ -47,9 +47,9 @@ test('markdown -> mdast', (t) => {
         {
           type: 'paragraph',
           children: [
-            {type: 'text', value: 'a '},
-            {type: 'delete', children: [{type: 'text', value: 'b\nc'}]},
-            {type: 'text', value: ' d.'}
+            { type: 'text', value: 'a ' },
+            { type: 'delete', children: [{ type: 'text', value: 'b\nc' }] },
+            { type: 'text', value: ' d.' }
           ]
         }
       ]
@@ -66,12 +66,12 @@ test('mdast -> markdown', (t) => {
       {
         type: 'paragraph',
         children: [
-          {type: 'text', value: 'a '},
-          {type: 'delete', children: [{type: 'text', value: 'b'}]},
-          {type: 'text', value: ' c.'}
+          { type: 'text', value: 'a ' },
+          { type: 'delete', children: [{ type: 'text', value: 'b' }] },
+          { type: 'text', value: ' c.' }
         ]
       },
-      {extensions: [gfmStrikethroughToMarkdown]}
+      { extensions: [gfmStrikethroughToMarkdown] }
     ),
     'a ~~b~~ c.\n',
     'should serialize strikethrough'
@@ -82,12 +82,12 @@ test('mdast -> markdown', (t) => {
       {
         type: 'paragraph',
         children: [
-          {type: 'text', value: 'a '},
-          {type: 'delete', children: [{type: 'text', value: 'b\nc'}]},
-          {type: 'text', value: ' d.'}
+          { type: 'text', value: 'a ' },
+          { type: 'delete', children: [{ type: 'text', value: 'b\nc' }] },
+          { type: 'text', value: ' d.' }
         ]
       },
-      {extensions: [gfmStrikethroughToMarkdown]}
+      { extensions: [gfmStrikethroughToMarkdown] }
     ),
     'a ~~b\nc~~ d.\n',
     'should serialize strikethrough w/ eols'
