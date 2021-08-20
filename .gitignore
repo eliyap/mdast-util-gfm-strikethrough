@@ -1,6 +1,11 @@
+# Originals
 coverage/
 node_modules/
 *.log
 *.d.ts
 .DS_Store
 yarn.lock
+
+# Virtual Environments
+venv/
+env/
