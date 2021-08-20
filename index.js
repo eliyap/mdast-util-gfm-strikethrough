@@ -11,8 +11,8 @@ import { containerPhrasing } from 'mdast-util-to-markdown/lib/util/container-phr
 /** @type {FromMarkdownExtension} */
 export const pandocMarkFromMarkdown = {
   canContainEols: ['delete'],
-  enter: { strikethrough: enterStrikethrough },
-  exit: { strikethrough: exitStrikethrough }
+  enter: { mark: enterMark },
+  exit: { mark: exitMark }
 }
 
 /** @type {ToMarkdownExtension} */
@@ -24,12 +24,12 @@ export const pandocMarkToMarkdown = {
 handleMark.peek = peekMark
 
 /** @type {FromMarkdownHandle} */
-function enterStrikethrough(token) {
+function enterMark(token) {
   this.enter({ type: 'delete', children: [] }, token)
 }
 
 /** @type {FromMarkdownHandle} */
-function exitStrikethrough(token) {
+function exitMark(token) {
   this.exit(token)
 }
 
