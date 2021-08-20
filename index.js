@@ -10,7 +10,7 @@ import { containerPhrasing } from 'mdast-util-to-markdown/lib/util/container-phr
 
 /** @type {FromMarkdownExtension} */
 export const pandocMarkFromMarkdown = {
-  canContainEols: ['delete'],
+  canContainEols: ['mark'],
   enter: { mark: enterMark },
   exit: { mark: exitMark }
 }
@@ -25,7 +25,7 @@ handleMark.peek = peekMark
 
 /** @type {FromMarkdownHandle} */
 function enterMark(token) {
-  this.enter({ type: 'delete', children: [] }, token)
+  this.enter({ type: 'mark', children: [] }, token)
 }
 
 /** @type {FromMarkdownHandle} */
