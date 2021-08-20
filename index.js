@@ -18,10 +18,10 @@ export const pandocMarkFromMarkdown = {
 /** @type {ToMarkdownExtension} */
 export const pandocMarkToMarkdown = {
   unsafe: [{ character: '~', inConstruct: 'phrasing' }],
-  handlers: { delete: handleDelete }
+  handlers: { delete: handleMark }
 }
 
-handleDelete.peek = peekDelete
+handleMark.peek = peekMark
 
 /** @type {FromMarkdownHandle} */
 function enterStrikethrough(token) {
@@ -37,7 +37,7 @@ function exitStrikethrough(token) {
  * @type {ToMarkdownHandle}
  * @param {Delete} node
  */
-function handleDelete(node, _, context) {
+function handleMark(node, _, context) {
   const exit = context.enter('emphasis')
   const value = containerPhrasing(node, context, { before: '~', after: '~' })
   exit()
@@ -45,6 +45,6 @@ function handleDelete(node, _, context) {
 }
 
 /** @type {ToMarkdownHandle} */
-function peekDelete() {
+function peekMark() {
   return '~'
 }
